@@ -31,7 +31,8 @@
     var instances = [], matchers = [], defaultOptions = {
         precision: 100,
         elapse: false,
-        defer: false
+        defer: false,
+        date: new Date()
     };
     matchers.push(/^[0-9]*$/.source);
     matchers.push(/([0-9]{1,2}\/){2}[0-9]{4}( [0-9]{1,2}(:[0-9]{2}){2})?/.source);
@@ -182,7 +183,7 @@
                 this.remove();
                 return;
             }
-            var hasEventsAttached = $._data(this.el, "events") !== undefined, now = new Date(), newTotalSecsLeft;
+            var hasEventsAttached = $._data(this.el, "events") !== undefined, now = this.options.date, newTotalSecsLeft;
             newTotalSecsLeft = this.finalDate.getTime() - now.getTime();
             newTotalSecsLeft = Math.ceil(newTotalSecsLeft / 1e3);
             newTotalSecsLeft = !this.options.elapse && newTotalSecsLeft < 0 ? 0 : Math.abs(newTotalSecsLeft);

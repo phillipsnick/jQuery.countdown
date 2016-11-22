@@ -15,7 +15,8 @@
       defaultOptions  = {
         precision: 100, // 0.1 seconds, used to update the DOM
         elapse: false,
-        defer: false
+        defer: false,
+        date: new Date()
       };
   // Miliseconds
   matchers.push(/^[0-9]*$/.source);
@@ -207,7 +208,7 @@
         return;
       }
       var hasEventsAttached = $._data(this.el, 'events') !== undefined,
-          now               = new Date(),
+          now               = this.options.date,
           newTotalSecsLeft;
       // Create an offset date object
       newTotalSecsLeft = this.finalDate.getTime() - now.getTime(); // Millisecs
